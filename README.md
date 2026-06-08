@@ -125,11 +125,10 @@ Gratuity = (Last Drawn Salary × 15 × Years of Service) / 30
 
 - **15** = 15 days of salary
 - **26** = Represents a 26-working-day month (30 days - 4 Sundays)
-- **30** = For establishments operating all 7 days (no weekly offs)
-
+- **30** = Used for employees **NOT covered under the Act** (establishments with <10 employees, or voluntary gratuity schemes). Uses calendar month (30 days) instead of working month.
 ### What Counts as "Salary" or "Wages"?
 
-- **30** = Used for employees **NOT covered under the Act** (establishments with <10 employees, or voluntary gratuity schemes). Uses calendar month (30 days) instead of working month
+- **30** = Used for employees **NOT covered under the Act** (establishments with <10 employees, or voluntary gratuity schemes). Uses calendar month (30 days) instead of working month.schemes). Uses calendar month (30 days) instead of working month
 -  **In most IT companies:** DA is often zero, so Basic Salary alone is used.
 -  
 > **Important Note:** Indian labour laws mandate that **ALL establishments must provide one day off per week** to employees, even if the business operates 24/7 (hospitals, hotels, emergency services). Such establishments use rotational/staggered shifts to ensure each employee gets weekly rest.
