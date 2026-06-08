@@ -4,6 +4,8 @@
 
 The **Gratuity Checker India** Custom GPT is provided strictly for **informational and educational purposes only**.
 
+**This article explains gratuity based on the Payment of Gratuity Act, 1972. It does not fully cover changes introduced under the 2025 Labour Codes or later amendments.** If your employment terms specifically refer to the new Labour Codes or fixed-term contracts, please consult your HR or a labour law expert for the latest rules.
+
 ---
 
 ## Not Legal or Professional Advice
@@ -25,6 +27,7 @@ Always consult a qualified **labour law attorney**, **HR professional**, or **Ch
 - Indian labour laws are subject to amendments, government notifications, and judicial interpretations that may not be reflected in the GPT's responses.
 - The **₹20 Lakh cap** on gratuity was introduced via the Payment of Gratuity (Amendment) Act, 2018. Future amendments may change this limit and may not be reflected without updates to this GPT.
 - State-specific rules, sector-specific rules (e.g., for journalists, plantation workers), or company-specific gratuity policies may differ from the general provisions discussed.
+- **2025 Labour Codes:** This GPT does not fully cover changes introduced under the Code on Wages, Industrial Relations Code, Social Security Code, and Occupational Safety Code. If applicable, consult your HR or legal expert.
 
 ---
 
@@ -41,10 +44,11 @@ This GPT and its responses are provided **"as is"** without any warranty of any 
 
 All calculations performed by this GPT assume:
 1. **Salary** = Basic Salary + Dearness Allowance (DA) only
-2. The formula `(Salary × 15 × Years of Service) / 26` for employees covered under the Act
-3. The formula `(Salary × 15 × Years of Service) / 30` for employees NOT covered under the Act
-4. Maximum payable gratuity is capped at ₹20,00,000
-5. Partial year service is rounded as per the Act (>= 6 months rounds up)
+2. If Basic + DA < 50% of total pay, allowances may be included per wage definitions
+3. The formula `(Salary × 15 × Years of Service) / 26` for employees covered under the Act
+4. The formula `(Salary × 15 × Years of Service) / 30` for employees NOT covered under the Act
+5. Maximum payable gratuity is capped at ₹20,00,000
+6. Partial year service is rounded as per the Act (>= 6 months rounds up)
 
 Actual payouts may vary based on your employer's specific policy, employment contract, or applicable sector rules.
 
@@ -61,6 +65,7 @@ Actual payouts may vary based on your employer's specific policy, employment con
 ## Tax Disclaimer
 
 - This GPT provides a general overview of gratuity tax exemptions under **Section 10(10) of the Income Tax Act, 1961**.
+- **Gratuity is tax-free only up to a total limit of ₹20 Lakhs. This is a combined lifetime limit across all employers.** If you receive gratuity from multiple companies over your career, the total tax-free amount cannot exceed ₹20 Lakh — any amount beyond that is taxable as per your income slab.
 - Tax implications can vary significantly based on your employment type, total income, and the nature of your exit from employment.
 - Always verify tax liability with a **Chartered Accountant** before filing returns or making tax-related decisions.
 
