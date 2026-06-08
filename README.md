@@ -129,8 +129,10 @@ Gratuity = (Last Drawn Salary × 15 × Years of Service) / 30
 
 ### What Counts as "Salary" or "Wages"?
 
-- **Traditionally:** Basic Salary + Dearness Allowance (DA) only — **not CTC or gross salary**.
-- **In most IT companies:** DA is often zero, so Basic Salary alone is used.
+- **30** = Used for employees **NOT covered under the Act** (establishments with <10 employees, or voluntary gratuity schemes). Uses calendar month (30 days) instead of working month
+-  **In most IT companies:** DA is often zero, so Basic Salary alone is used.
+-  
+> **Important Note:** Indian labour laws mandate that **ALL establishments must provide one day off per week** to employees, even if the business operates 24/7 (hospitals, hotels, emergency services). Such establishments use rotational/staggered shifts to ensure each employee gets weekly rest.
 - **Important exception:** If your Basic + DA is less than 50% of your total pay, part of your allowances may be included to bring "wages" closer to 50% for statutory calculations.
 
 > **Years of Service** is computed from DOJ to LWD. Fractions ≥ 6 months round up.
