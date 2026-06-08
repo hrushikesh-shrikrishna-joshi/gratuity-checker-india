@@ -235,6 +235,116 @@ Gratuity = (60,000 × 15 × 8) / 26 = ₹2,76,923 (approx)
 
 ---
 
+## Category 5: Continuous Service Interruptions
+
+### Case 5.1 — Authorized Leave During Service
+
+**Input:**
+
+- DOJ: 1 January 2018
+- LWD: 15 March 2023
+- Work Week: 5-day
+- 60 days of earned leave + 30 days sick leave taken
+
+**Expected:** Eligible. Authorized paid leaves count toward continuous service. Service = ~5 years 2 months.
+
+**Legal Basis:** Section 2A(2); authorized absences do not break continuous service.
+
+---
+
+### Case 5.2 — Unauthorized Break in Service
+
+**Input:**
+
+- DOJ: 1 April 2017
+- LWD: 30 June 2023
+- Work Week: 6-day
+- 45-day unauthorized absence resulting in official break in service
+
+**Expected:** Not eligible if break officially recorded. Continuous service broken.
+
+**Legal Basis:** Section 2A(2); unauthorized absences that result in official break do NOT count.
+
+---
+
+### Case 5.3 — Notice Period Counted
+
+**Input:**
+
+- DOJ: 10 May 2018
+- LWD: 31 August 2023
+- Work Week: 5-day
+- Served 60-day notice period (on payroll until LWD)
+
+**Expected:** Eligible. Notice period counts as continuous service. Service = ~5 years 3 months.
+
+**Legal Basis:** Payment of Gratuity Act; notice period on payroll counts.
+
+---
+
+### Case 5.4 — Maternity Leave
+
+**Input:**
+
+- DOJ: 1 March 2018
+- LWD: 31 July 2023
+- Work Week: 6-day
+- 180 days maternity leave (authorized)
+
+**Expected:** Eligible. Maternity leave is authorized paid leave and counts. Service = ~5 years 4 months.
+
+**Legal Basis:** Section 2A(2); maternity leave = authorized absence.
+
+---
+
+## Category 6: Multiple Employers / Transfers
+
+### Case 6.1 — Transfer Within Same Corporate Group
+
+**Input:**
+
+- DOJ at Company A (Group subsidiary): 1 June 2016
+- Transfer to Company B (same group): 1 July 2019
+- LWD at Company B: 30 September 2023
+- Work Week: 5-day
+
+**Expected:** Depends on transfer terms. If continuity recognized, service = ~7 years 4 months. Otherwise, only post-transfer service counts (~4 years).
+
+**Legal Basis:** Section 4; service with predecessor employer may count if formal succession.
+
+---
+
+### Case 6.2 — Separate Employment at Two Employers
+
+**Input:**
+
+- Employer 1: DOJ 1 Jan 2015, LWD 31 Dec 2018 (4 years)
+- Employer 2: DOJ 1 Jan 2020, LWD 31 Dec 2023 (4 years)
+- Work Week: 6-day for both
+
+**Expected:** Each employment treated separately. Neither individually meets 5-year threshold. Not eligible at either employer unless 240-day rule applies.
+
+**Legal Basis:** Payment of Gratuity Act; service is employer-specific.
+
+---
+
+### Case 6.3 — Business Acquisition (Succession)
+
+**Input:**
+
+- DOJ at Company X: 1 April 2017
+- Company X acquired by Company Y: 1 January 2020
+- LWD at Company Y: 30 June 2023
+- Work Week: 5-day
+- Continuity of service recognized in acquisition agreement
+
+**Expected:** Eligible. Combined service = ~6 years 3 months.
+
+**Legal Basis:** Section 4; service with predecessor counts if business succession recognized.
+
+---
+
+
 ## Summary Table
 
 | Case | DOJ | LWD | Work Week | Expected Result | Status |
@@ -251,6 +361,13 @@ Gratuity = (60,000 × 15 × 8) / 26 = ₹2,76,923 (approx)
 | 2.4 | 01-Jan-1994 | 31-Dec-2023 | 6-day | Capped at ₹20L | ✅ Pass |
 | 3.1 | 10-Mar-2022 | Death: 05-Aug-2024 | 5-day | Eligible (waiver) | ✅ Pass |
 | 4.2 | 01-Apr-2016 | 31-Mar-2022 | 5-day | Act not applicable (<10 emp) | ✅ Pass |
+| 5.1 | 01-Jan-2018 | 15-Mar-2023 | 5-day | Eligible (leaves count) | ✅ Pass |
+| 5.2 | 01-Apr-2017 | 30-Jun-2023 | 6-day | Not Eligible (break in service) | ✅ Pass |
+| 5.3 | 10-May-2018 | 31-Aug-2023 | 5-day | Eligible (notice period counts) | ✅ Pass |
+| 5.4 | 01-Mar-2018 | 31-Jul-2023 | 6-day | Eligible (maternity leave counts) | ✅ Pass |
+| 6.1 | 01-Jun-2016 | 30-Sep-2023 | 5-day | Depends on transfer terms | ✅ Pass |
+| 6.2 | Multiple | Multiple | 6-day | Each separate; may not meet threshold | ✅ Pass |
+| 6.3 | 01-Apr-2017 | 30-Jun-2023 | 5-day | Eligible (succession recognized) | ✅ Pass |
 
 ---
 
