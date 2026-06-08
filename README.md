@@ -18,10 +18,10 @@
 
 ## What Problem Does This Solve?
 
-Gratuity calculation in India is often misunderstood. Employees don't know if they qualify, HR teams manually calculate payouts, and edge cases (like 4 years 240 days, contract employees, or death/disability) create confusion and payroll errors.
+Gratuity calculation in India is often misunderstood. Employees don't know if they qualify, HR teams manually calculate payouts, and edge cases (like the 4 years 240 days rule, contract employees, or death/disability) create confusion and payroll errors.
 
 This GPT gives anyone — employee, HR, or payroll manager — a fast, conversational way to:
-- Check if an employee qualifies for gratuity
+- Check if an employee qualifies for gratuity using real dates
 - Estimate the exact payout amount
 - Understand edge cases specific to Indian labour law
 - Get plain-English explanations of complex clauses
@@ -32,12 +32,32 @@ This GPT gives anyone — employee, HR, or payroll manager — a fast, conversat
 
 | Feature | Details |
 |---|---|
-| Eligibility Check | Determines qualification based on years of service, employment type, and exit reason |
-| Payout Calculation | Computes gratuity using last drawn salary and years of service |
-| Edge Case Handling | Covers 4 yrs 240 days rule, death/disability, resignation vs. termination |
+| Eligibility Check | Determines qualification based on **Date of Joining (DOJ)**, **Last Working Day (LWD)**, and **work week (5-day or 6-day)** |
+| Payout Calculation | Computes gratuity using last drawn salary and service duration derived from DOJ → LWD |
+| Edge Case Handling | Covers 4 yrs 240/190 days rule (based on work week), death/disability, resignation vs. termination |
 | Act Reference | Cites relevant sections of the Payment of Gratuity Act, 1972 |
 | Plain Language | Explains results in simple, jargon-free language |
 | India-Specific | Focused exclusively on Indian labour law — no generic global advice |
+
+---
+
+## How Eligibility Is Determined
+
+The GPT calculates actual service duration from your **Date of Joining (DOJ)** to your **Last Working Day (LWD)** and checks the qualifying threshold based on your **work week**:
+
+| Work Week | Qualifying Days in 5th Year | Equivalent |
+|---|---|---|
+| 6-day work week | 240 days | ~8 months |
+| 5-day work week | 190 days | ~7.5 months |
+
+**Standard rule:** Minimum 5 years of continuous service.
+
+**Edge case rule:** If you haven't completed 5 full years, but have completed **240 days (6-day week)** or **190 days (5-day week)** in the 5th year — you are still eligible.
+
+**Inputs needed for eligibility check:**
+1. **Date of Joining (DOJ)** — e.g., `15 March 2018`
+2. **Last Working Day (LWD)** — e.g., `10 June 2023` (actual or planned)
+3. **Work Week** — 5-day or 6-day
 
 ---
 
@@ -46,24 +66,27 @@ This GPT gives anyone — employee, HR, or payroll manager — a fast, conversat
 Here are real questions you can ask this GPT:
 
 ```
-I have worked for 4 years and 242 days. Am I eligible for gratuity?
+My Date of Joining is 10 April 2019 and my Last Working Day is 20 June 2024.
+I work a 5-day week. Am I eligible for gratuity?
 ```
 
 ```
-My last drawn basic salary is ₹45,000 and I have completed 7 years and 8 months of service.
-Calculate my gratuity.
+DOJ: 1 July 2020, LWD: 15 March 2025, 6-day work week.
+Calculate my gratuity. Basic salary is ₹52,000/month.
+```
+
+```
+I joined on 5 January 2021. I am planning to resign on 30 September 2025.
+My company has a 5-day work week. Will I qualify for gratuity?
+```
+
+```
+I have worked for 4 years and 8 months at a company with a 6-day work week.
+My DOJ was 1 June 2020. When is the earliest I can resign and still get gratuity?
 ```
 
 ```
 If an employee dies after 2 years of service, is the nominee entitled to gratuity?
-```
-
-```
-What is the maximum gratuity amount payable under the current law?
-```
-
-```
-Does gratuity apply to contract employees or only permanent staff?
 ```
 
 ```
@@ -74,7 +97,7 @@ My employer is refusing to pay gratuity. What are my legal options?
 
 ## How Gratuity Is Calculated
 
-The GPT uses the standard formula defined in the Act:
+Once eligibility is confirmed (from DOJ, LWD, and work week), the payout is computed using the standard formula:
 
 **For employees covered under the Act:**
 ```
@@ -87,13 +110,16 @@ Gratuity = (Last Drawn Salary × 15 × Years of Service) / 30
 ```
 
 > **Salary** here means Basic + Dearness Allowance (DA) only — not CTC or gross salary.
+> **Years of Service** is computed from DOJ to LWD. Fractions ≥ 6 months round up.
 > **Maximum** gratuity payable is ₹20,00,000 (₹20 Lakhs) as of the latest notification.
 
 ---
 
 ## Key Rules Covered
 
-- Minimum 5 years of continuous service required (with the 4 yrs 240 days exception)
+- Minimum **5 years of continuous service** required (DOJ to LWD)
+- **5-day work week:** 190+ days in the 5th year qualifies (even if < 5 full years)
+- **6-day work week:** 240+ days in the 5th year qualifies (even if < 5 full years)
 - Applies to establishments with 10 or more employees
 - Covers resignation, retirement, retrenchment, death, and disability
 - Employer must pay within 30 days of it becoming payable
@@ -114,6 +140,8 @@ Gratuity = (Last Drawn Salary × 15 × Years of Service) / 30
 
 ## Assumptions & Limitations
 
+- Eligibility is computed from actual **DOJ** and **LWD** dates provided by the user
+- Work week (5-day or 6-day) determines which day-count threshold applies in the 5th year
 - Calculations are based on the **Payment of Gratuity Act, 1972** and its amendments
 - Does not account for company-specific gratuity policies that may be *more* generous than the Act
 - Does not replace formal legal, HR, or payroll advice
@@ -145,7 +173,7 @@ See [`docs/disclaimer.md`](docs/disclaimer.md) for full disclaimer.
 ## Contributing
 
 Found an edge case this GPT handles incorrectly? Open an issue with:
-1. The question you asked
+1. The DOJ, LWD, work week, and salary you used
 2. The response you received
 3. What the correct answer should be (with a source/reference)
 
