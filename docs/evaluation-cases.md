@@ -4,6 +4,14 @@ This document lists test scenarios used to validate the GPT's responses.
 All eligibility checks use three inputs: **Date of Joining (DOJ)**, **Last Working Day (LWD)**, and **Work Week (5-day or 6-day)**.
 Each case includes the input, expected output, and the legal basis.
 
+### What Counts as "Continuous Service"?
+
+The 190/240 day thresholds refer to **calendar days of continuous service**, NOT just working days:
+- ✅ All authorized paid leaves (earned leave, sick leave, public holidays, maternity leave, notice period) **count** toward continuous service
+- ❌ Unauthorized absences that result in an official break in service do **NOT count**
+
+If you remained officially employed and on payroll, those days count — including leave, WFH, holidays, and notice period.
+
 ---
 
 ## Category 1: Basic Eligibility (DOJ + LWD + Work Week)
