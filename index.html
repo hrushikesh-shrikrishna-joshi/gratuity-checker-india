@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gratuity Checker India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans p-6 md:p-12">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Gratuity Checker India</h1>
+        <p class="text-sm text-gray-500 mb-6">Calculate your exact gratuity payout based on the Payment of Gratuity Act, 1972.</p>
+
+        <!-- Calculator Form -->
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Date of Joining</label>
+                <input type="date" id="joinDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Last Working Day (LWD)</label>
+                <p class="text-xs text-gray-500 mb-1">Includes your notice period.</p>
+                <input type="date" id="endDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Company Workweek</label>
+                <select id="workweek" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="5">5 Days a week</option>
+                    <option value="6">6 Days a week</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Last Drawn Basic + DA Pay (₹)</label>
+                <input type="number" id="basePay" placeholder="e.g. 50000" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <button onclick="calculateGratuity()" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition">
+                Calculate Payout
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultArea" class="mt-6 hidden p-4 rounded-md bg-gray-50 border border-gray-200">
+            <h2 class="text-lg font-bold text-gray-900" id="eligibilityStatus"></h2>
+            <p class="text-gray-600 mt-2 text-sm" id="serviceDuration"></p>
+            <p class="text-xs text-gray-500 mt-1" id="eligibilityReasoning"></p>
+            <p class="text-2xl font-bold text-green-600 mt-3" id="gratuityAmount"></p>
+        </div>
+
+        <!-- AI Fallback CTA -->
+        <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+            <p class="text-sm text-gray-600 mb-3">Not sure about your Basic Pay? Want to verify notice period rules or upload your offer letter?</p>
+            <!-- Replace the href with your Poe / HuggingChat link later -->
+            <a href="#" class="inline-flex items-center justify-center w-full bg-purple-100 text-purple-700 font-semibold py-2 px-4 rounded-md hover:bg-purple-200 transition border border-purple-200">
+                🤖 Chat with AI Gratuity Assistant
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function calculateGratuity() {
+            const join = new Date(document.getElementById('joinDate').value);
+            const end = new Date(document.getElementById('endDate').value);
+            const pay = parseFloat(document.getElementById('basePay').value);
+            const workweek = document.getElementById('workweek').value;
+            const resultArea = document.getElementById('resultArea');
+
+            if (!document.getElementById('joinDate').value || !document.getElementById('endDate').value || isNaN(pay) || join > end) {
+                alert("Please enter valid dates and salary.");
+                return;
+            }
+
+            // Calculate exact days, adding 1 to include both joining date and LWD
+            const diffTime = Math.abs(end - join);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+            
+            const fullYears = Math.floor(diffDays / 365);
+            const remainingDays = diffDays % 365;
+            const remainingMonths = Math.floor(remainingDays / 30);
+            
+            // Set eligibility threshold based on workweek
+            const requiredDaysInFifthYear = workweek === '5' ? 190 : 240;
+            const eligibilityThreshold = (4 * 365) + requiredDaysInFifthYear;
+            const isEligible = diffDays >= eligibilityThreshold;
+            
+            document.getElementById('serviceDuration').innerText = `Total Service: ${fullYears} Years, ${remainingMonths} Months, and ${remainingDays % 30} Days (${diffDays} total days).`;
+
+            if (!isEligible) {
+                document.getElementById('eligibilityStatus').innerText = "Not Eligible";
+                document.getElementById('eligibilityStatus').className = "text-lg font-bold text-red-600";
+                document.getElementById('eligibilityReasoning').innerText = `You need at least 4 years and ${requiredDaysInFifthYear} days of continuous service for a ${workweek}-day workweek.`;
+                document.getElementById('gratuityAmount').innerText = "";
+            } else {
+                // Rounding rule: over 6 months counts as a full year
+                const calculationYears = remainingMonths >= 6 ? fullYears + 1 : fullYears;
+                
+                // Standard Gratuity Formula: (15 x Wages x Years) / 26
+                const gratuity = Math.round((15 * pay * calculationYears) / 26);
+                
+                document.getElementById('eligibilityStatus').innerText = "Eligible for Gratuity ✓";
+                document.getElementById('eligibilityStatus').className = "text-lg font-bold text-green-600";
+                document.getElementById('eligibilityReasoning').innerText = `You crossed the 4 years and ${requiredDaysInFifthYear} days threshold. Payout calculated for ${calculationYears} years.`;
+                document.getElementById('gratuityAmount').innerText = `₹${gratuity.toLocaleString('en-IN')}`;
+            }
+            
+            resultArea.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
